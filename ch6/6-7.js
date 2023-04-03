@@ -1,6 +1,6 @@
-let area = height * width;
+let area = width * height;
 
-const copyName = "애플";
+const companyName = "애플";
 
-let header = "제목없음";
-let result = `<h1>${header}</h1>`;
+let title = "제목없음";
+let result = `<h1>${title}</h1>`;

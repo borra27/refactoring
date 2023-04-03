@@ -1,23 +1,33 @@
 export function printOwing(invoice) {
+  printBanner();
+
+  const outstanding = calculateOutstading(invoice);
+
+  recordDueDate(invoice);
+  printDetails(invoice, outstanding);
+}
+
+function printBanner() {
   console.log("***********************");
   console.log("**** Customer Owes ****");
   console.log("***********************");
-
-  //print details
-  console.log(`name: ${invoice.customer}`);
-  console.log(`amount: ${calculateOutstading(invoice.orders)}`);
-  console.log(`due: ${recordDueDate().toLocaleDateString()}`);
 }
-function calculateOutstading(orders) {
-  let result = 0;
-  for (const order of orders) {
-    result += order.amount;
-  }
-  return result;
+function calculateOutstading(invoce) {
+  return invoce.orders.reduce((sum, order) => sum + order.amount, 0);
 }
-function recordDueDate() {
+function recordDueDate(invoce) {
   const today = new Date();
-  return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+  // 객체 불변성을 위반하지만, 아직 배우지 않았기 때문에 패스
+  invoce.dueDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 30
+  );
+}
+function printDetails(invoice, outstanding) {
+  console.log(`name: ${invoice.customer}`);
+  console.log(`amount: ${outstanding}`);
+  console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
 }
 
 const invoice = {

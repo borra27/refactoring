@@ -1,20 +1,22 @@
 // 예제 1
 export function rating(driver) {
-  return moreThanFiveLateDeliveries(driver) ? 2 : 1;
+  return driver.numberOfLateDeliveries > 5 ? 2 : 1;
 }
-
-function moreThanFiveLateDeliveries(dvr) {
-  return dvr.numberOfLateDeliveries > 5;
-}
+const driver = {
+  numberOfLateDeliveries: 6,
+};
+console.log(rating(driver));
 
 // 예제 2
 function reportLines(customer) {
   const lines = [];
-  gatherCustomerData(lines, customer);
+  lines.push(["name", customer.name]);
+  lines.push(["location", customer.location]);
+
   return lines;
 }
-
-function gatherCustomerData(out, customer) {
-  out.push(['name', customer.name]);
-  out.push(['location', customer.location]);
-}
+const customer = {
+  name: "debora",
+  location: "포항시 남구",
+};
+console.log(reportLines(customer));

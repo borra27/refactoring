@@ -1,4 +1,4 @@
-class Reading {
+export class Reading {
   #customer;
   #quantity;
   #month;
@@ -23,20 +23,21 @@ class Reading {
     return this.#year;
   }
 
-  baseRate() {
+  get baseRate() {
     if (this.#year === 2017 && this.#month === 5) return 0.1;
     return 0.2;
   }
 
-  taxThreshold(year) {
+  get taxThreshold() {
     return 0.1;
   }
-  taxableCharge() {
-    return Math.max(0, this.baseRate() - taxThreshold(this.#year));
+
+  get taxableCharge() {
+    return Math.max(0, this.baseCharge - taxThreshold);
   }
 
-  baseCharge() {
-    return this.baseRate() * this.#quantity;
+  get baseCharge() {
+    return this.baseRate * this.quantity;
   }
 }
 

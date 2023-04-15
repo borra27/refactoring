@@ -1,5 +1,5 @@
 import { acquireReading } from "./6-9.js";
 
-const aReading = acquireReading();
+const reading = acquireReading();
 
-console.log(aReading.baseRate());
+console.log(reading.baseRate);

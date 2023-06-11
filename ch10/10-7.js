@@ -1,8 +1,6 @@
 for (const p of people) {
-  if (!found) {
-    if (p === 'Don') {
-      sendAlert();
-      found = true;
-    }
+  if (p === "Don") {
+    sendAlert();
+    break; // boolean 타입은 최대한 쓰지 않도록
   }
 }

@@ -1,5 +1,15 @@
 function calculateCharge(date, quantity, plan) {
-  if (!date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd))
-    return quantity * plan.summerRate;
+  return isSummer(date, plan)
+    ? summerCharge(quantity, plan)
+    : regularCharge(quantity, plan);
+}
+
+function isSummer(date, plan) {
+  return !date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd);
+}
+function summerCharge(quantity, plan) {
+  return quantity * plan.summerRate;
+}
+function regularCharge(quantity, plan) {
   return quantity * plan.regularRate + plan.regularServiceCharge;
 }

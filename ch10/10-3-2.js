@@ -1,12 +1,14 @@
 export function adjustedCapital(instrument) {
-  if (
+  if (!isEligibleForAdjustedCapital(instrument)) return 0;
+  return (
+    (instrument.income / instrument.duration) * anInstrument.adjustmentFactor
+  );
+}
+
+function isEligibleForAdjustedCapital(instrument) {
+  return (
     instrument.capital > 0 &&
     instrument.interestRate > 0 &&
     instrument.duration > 0
-  ) {
-    return (
-      (instrument.income / instrument.duration) * anInstrument.adjustmentFactor
-    );
-  }
-  return 0;
+  );
 }
